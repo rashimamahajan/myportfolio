@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Rashima Mahajan | Academic Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --neon-cyan: #00f5ff;
+      --neon-purple: #bf00ff;
+      --neon-green: #39ff14;
+      --neon-amber: #ffb300;
+      --dark-bg: #050a13;
+      --dark-card: #0a1628;
+      --dark-border: #1a2d4a;
+      --grid-line: rgba(0, 245, 255, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--dark-bg);
+      color: #c8d6e5;
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Grid Background ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ── Scanlines ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.05) 2px,
+        rgba(0,0,0,0.05) 4px
+      );
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .z1 { position: relative; z-index: 1; }
+
+    /* ── Typography ── */
+    .font-orbitron { font-family: 'Orbitron', sans-serif; }
+    .font-mono-tech { font-family: 'Share Tech Mono', monospace; }
+    .font-rajdhani { font-family: 'Rajdhani', sans-serif; }
+
+    /* ── Neon Glow Effects ── */
+    .glow-cyan {
+      text-shadow: 0 0 10px var(--neon-cyan), 0 0 30px rgba(0,245,255,0.4);
+      color: var(--neon-cyan);
+    }
+    .glow-purple {
+      text-shadow: 0 0 10px var(--neon-purple), 0 0 30px rgba(191,0,255,0.4);
+      color: var(--neon-purple);
+    }
+    .glow-green {
+      text-shadow: 0 0 10px var(--neon-green), 0 0 30px rgba(57,255,20,0.3);
+      color: var(--neon-green);
+    }
+    .glow-amber {
+      text-shadow: 0 0 8px var(--neon-amber), 0 0 20px rgba(255,179,0,0.3);
+      color: var(--neon-amber);
+    }
+
+    /* ── Neon Box Glow ── */
+    .box-glow-cyan {
+      box-shadow: 0 0 15px rgba(0,245,255,0.25), inset 0 0 15px rgba(0,245,255,0.05);
+      border-color: rgba(0,245,255,0.4);
+    }
+    .box-glow-purple {
+      box-shadow: 0 0 15px rgba(191,0,255,0.25), inset 0 0 15px rgba(191,0,255,0.05);
+      border-color: rgba(191,0,255,0.4);
+    }
+    .box-glow-green {
+      box-shadow: 0 0 15px rgba(57,255,20,0.2), inset 0 0 10px rgba(57,255,20,0.04);
+      border-color: rgba(57,255,20,0.35);
+    }
+    .box-glow-amber {
+      box-shadow: 0 0 15px rgba(255,179,0,0.25), inset 0 0 10px rgba(255,179,0,0.05);
+      border-color: rgba(255,179,0,0.4);
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--dark-card);
+      border: 1px solid var(--dark-border);
+      border-radius: 4px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+    }
+
+    /* ── Section Title ── */
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-title::before {
+      content: '//';
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9em;
+      opacity: 0.5;
+    }
+
+    /* ── Stat Badge ── */
+    .stat-badge {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    /* ── Timeline ── */
+    .timeline-item {
+      position: relative;
+      padding-left: 1.75rem;
+      border-left: 1px solid var(--dark-border);
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 6px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--neon-cyan);
+      box-shadow: 0 0 8px var(--neon-cyan);
+    }
+
+    /* ── Navbar ── */
+    nav {
+      background: rgba(5,10,19,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,245,255,0.12);
+    }
+
+    /* ── Nav Link ── */
+    .nav-link {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #7a9bb5;
+      transition: color 0.2s;
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 1px;
+      background: var(--neon-cyan);
+      box-shadow: 0 0 6px var(--neon-cyan);
+      transition: width 0.25s;
+    }
+    .nav-link:hover { color: var(--neon-cyan); }
+    .nav-link:hover::after { width: 100%; }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    /* ── Blinking cursor ── */
+    .cursor::after {
+      content: '▮';
+      animation: blink 1s step-end infinite;
+      color: var(--neon-cyan);
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* ── Pulse ring ── */
+    .pulse-ring {
+      animation: pulse-ring 2.5s ease-out infinite;
+    }
+    @keyframes pulse-ring {
+      0%   { box-shadow: 0 0 0 0 rgba(0,245,255,0.4); }
+      70%  { box-shadow: 0 0 0 20px rgba(0,245,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(0,245,255,0); }
+    }
+
+    /* ── Skill bar ── */
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      animation: fill-bar 1.5s ease forwards;
+      transform-origin: left;
+    }
+    @keyframes fill-bar {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    /* ── Tag pill ── */
+    .tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      padding: 2px 10px;
+      border-radius: 2px;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+
+    /* ── XP Bar ── */
+    .xp-bar {
+      height: 6px;
+      background: rgba(0,245,255,0.1);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+    .xp-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+      box-shadow: 0 0 10px var(--neon-cyan);
+      border-radius: 3px;
+      animation: fill-bar 2s ease forwards;
+    }
+
+    /* ── Section divider ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,245,255,0.3), transparent);
+      margin: 0;
+    }
+
+    /* ── Hamburger ── */
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--neon-cyan);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 6px var(--neon-cyan);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ── Mobile Menu ── */
+    #mobile-menu {
+      background: rgba(5,10,19,0.97);
+      border-bottom: 1px solid rgba(0,245,255,0.15);
+    }
+
+    /* ── Hover glow card ── */
+    .pub-card:hover {
+      border-color: rgba(191,0,255,0.5);
+      box-shadow: 0 0 20px rgba(191,0,255,0.15);
+    }
+
+    /* ── Float animation ── */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+    .float { animation: float 4s ease-in-out infinite; }
+
+    /* ── Rotate animation ── */
+    @keyframes spin-slow { to { transform: rotate(360deg); } }
+    .spin-slow { animation: spin-slow 20s linear infinite; }
+
+    /* ── Fade-in-up ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Achievement badge ── */
+    .achievement {
+      border: 1px solid;
+      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      transition: transform 0.2s;
+    }
+    .achievement:hover { transform: scale(1.03); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .stat-badge { font-size: 2rem; }
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--dark-bg); }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(0,245,255,0.3);
+      border-radius: 3px;
+    }
+
+    /* ── Corner decoration ── */
+    .corner-tl::before, .corner-tl::after,
+    .corner-br::before, .corner-br::after {
+      content: '';
+      position: absolute;
+      width: 12px; height: 12px;
+    }
+    .corner-tl::before { top: 0; left: 0; border-top: 2px solid var(--neon-cyan); border-left: 2px solid var(--neon-cyan); }
+    .corner-tl::after  { bottom: 0; right: 0; border-bottom: 2px solid var(--neon-cyan); border-right: 2px solid var(--neon-cyan); }
+
+    .section-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════ -->
+<nav class="fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
+    <!-- Logo -->
+    <a href="#hero" class="font-orbitron text-xs tracking-widest glow-cyan font-bold">
+      DR.RM <span class="text-white opacity-30">// PORTFOLIO</span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-6">
+      <a href="#about"       class="nav-link">About</a>
+      <a href="#experience"  class="nav-link">Experience</a>
+      <a href="#research"    class="nav-link">Research</a>
+      <a href="#publications" class="nav-link">Publications</a>
+      <a href="#achievements" class="nav-link">Achievements</a>
+      <a href="#courses"     class="nav-link">Courses</a>
+    </div>
+
+    <!-- Hamburger -->
+    <button id="hamburger-btn" class="hamburger flex flex-col gap-1.5 md:hidden focus:outline-none" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden flex-col md:hidden z1">
+    <div class="flex flex-col px-6 py-4 gap-4">
+      <a href="#about"        class="nav-link text-sm" onclick="closeMobile()">About</a>
+      <a href="#experience"   class="nav-link text-sm" onclick="closeMobile()">Experience</a>
+      <a href="#research"     class="nav-link text-sm" onclick="closeMobile()">Research</a>
+      <a href="#publications" class="nav-link text-sm" onclick="closeMobile()">Publications</a>
+      <a href="#achievements" class="nav-link text-sm" onclick="closeMobile()">Achievements</a>
+      <a href="#courses"      class="nav-link text-sm" onclick="closeMobile()">Courses</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section id="hero" class="z1 pt-14">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-20 md:py-28 flex flex-col md:flex-row items-center gap-12">
+
+    <!-- Text -->
+    <div class="flex-1 text-center md:text-left">
+      <div class="font-mono-tech text-xs tracking-widest text-cyan-500 mb-3 opacity-70">
+        &gt; INITIALIZING PROFILE...
+      </div>
+
+      <h1 class="font-orbitron font-black leading-tight mb-3" style="font-size: clamp(2rem, 6vw, 3.5rem);">
+        <span class="glow-cyan">Rashima</span><br/>
+        <span class="text-white">Mahajan</span>
+        <span class="text-cyan-400">, Ph.D</span>
+      </h1>
+
+      <div class="font-orbitron text-sm md:text-base tracking-wider text-purple-400 mb-2" style="text-shadow: 0 0 10px rgba(191,0,255,0.5);">
+        Dean IQAC &amp; Professor · CSE
+      </div>
+
+      <!-- Typing Animation -->
+      <div class="flex items-center gap-2 mb-2" style="min-height:2rem;">
+        <span class="font-mono-tech text-xs text-cyan-500 opacity-60">&gt;&gt;</span>
+        <span id="tagline-text" class="font-mono-tech text-sm md:text-base text-cyan-300" style="text-shadow:0 0 8px rgba(0,245,255,0.5);"></span>
+        <span id="typing-cursor" class="font-mono-tech text-cyan-400 text-base" style="animation:blink 0.75s step-end infinite; text-shadow:0 0 8px #00f5ff;">▮</span>
+      </div>
+
+      <div class="font-rajdhani text-base text-slate-400 mb-6">
+        Manav Rachna International Institute of Research &amp; Studies, Faridabad
+      </div>
+
+      <p class="font-rajdhani text-base leading-relaxed text-slate-300 max-w-xl mx-auto md:mx-0 mb-8">
+        15+ years driving innovation at the intersection of <span class="text-cyan-400">Artificial Intelligence</span>, 
+        <span class="text-purple-400">Biomedical Signal Processing</span>, and 
+        <span class="text-green-400">Academic Quality Assurance</span>. 
+        Executive Programme alumna of <span class="text-amber-400">IIT Guwahati</span>.
+      </p>
+
+      <!-- Quick Stats -->
+      <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-8">
+        <div class="card box-glow-cyan border px-4 py-3 text-center min-w-[90px]">
+          <div class="stat-badge glow-cyan">14</div>
+          <div class="font-mono-tech text-xs text-slate-400 mt-1">Google H-Index</div>
+        </div>
+        <div class="card box-glow-purple border px-4 py-3 text-center min-w-[90px]">
+          <div class="stat-badge glow-purple">11</div>
+          <div class="font-mono-tech text-xs text-slate-400 mt-1">Scopus H-Index</div>
+        </div>
+        <div class="card box-glow-green border px-4 py-3 text-center min-w-[90px]">
+          <div class="stat-badge glow-green">15+</div>
+          <div class="font-mono-tech text-xs text-slate-400 mt-1">Years XP</div>
+        </div>
+        <div class="card box-glow-amber border px-4 py-3 text-center min-w-[90px]">
+          <div class="stat-badge glow-amber">4</div>
+          <div class="font-mono-tech text-xs text-slate-400 mt-1">PhDs Awarded</div>
+        </div>
+      </div>
+
+      <!-- CTA Links -->
+      <div class="flex flex-wrap justify-center md:justify-start gap-3">
+        <a href="https://scholar.google.com/citations?user=daFcZQEAAAAJ&hl=en" target="_blank"
+           class="font-orbitron text-xs tracking-wider px-5 py-2.5 border border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-black transition-all duration-200"
+           style="box-shadow: 0 0 12px rgba(0,245,255,0.2);">
+          GOOGLE SCHOLAR
+        </a>
+        <a href="https://www.scopus.com/authid/detail.uri?authorId=56155020000" target="_blank"
+           class="font-orbitron text-xs tracking-wider px-5 py-2.5 border border-purple-500 text-purple-400 hover:bg-purple-600 hover:text-white transition-all duration-200"
+           style="box-shadow: 0 0 12px rgba(191,0,255,0.2);">
+          SCOPUS PROFILE
+        </a>
+        <a href="https://www.linkedin.com/in/rashima-mahajan-03842036/" target="_blank"
+           class="font-orbitron text-xs tracking-wider px-5 py-2.5 border border-slate-600 text-slate-400 hover:border-slate-400 hover:text-white transition-all duration-200">
+          LINKEDIN
+        </a>
+      </div>
+    </div>
+
+    <!-- Avatar / Visual -->
+    <div class="flex-shrink-0 flex items-center justify-center">
+      <div class="relative float">
+        <!-- Outer ring -->
+        <div class="absolute inset-0 rounded-full border border-cyan-500 opacity-20 spin-slow" style="margin:-20px;"></div>
+        <div class="absolute inset-0 rounded-full border border-purple-500 opacity-15" style="margin:-40px; animation: spin-slow 30s linear infinite reverse;"></div>
+
+        <!-- Avatar circle -->
+        <div class="pulse-ring w-40 h-40 md:w-52 md:h-52 rounded-full border-2 border-cyan-500 flex items-center justify-center"
+             style="background: radial-gradient(circle at 30% 30%, rgba(0,245,255,0.12), rgba(191,0,255,0.06), #050a13);">
+          <div class="text-center">
+            <div class="font-orbitron font-black text-4xl md:text-5xl glow-cyan">RM</div>
+            <div class="font-mono-tech text-xs text-slate-400 mt-1">Ph.D · AI</div>
+          </div>
+        </div>
+
+        <!-- Orbit dots -->
+        <div class="absolute w-3 h-3 rounded-full bg-cyan-400" style="top:10px;right:-6px;box-shadow:0 0 8px #00f5ff;"></div>
+        <div class="absolute w-2 h-2 rounded-full bg-purple-400" style="bottom:20px;left:-8px;box-shadow:0 0 6px #bf00ff;"></div>
+        <div class="absolute w-2 h-2 rounded-full bg-green-400" style="bottom:-4px;right:20px;box-shadow:0 0 6px #39ff14;"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider z1"></div>
+
+
+<!-- ═══════════════════════════════════════════
+     ABOUT / EXPERTISE
+════════════════════════════════════════════ -->
+<section id="about" class="z1">
+  <div class="section-wrapper">
+    <div class="section-title glow-cyan mb-10 fade-up">About</div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Bio -->
+      <div class="card border box-glow-cyan p-6 relative corner-tl fade-up">
+        <div class="font-mono-tech text-xs text-cyan-500 mb-3 opacity-60">// BIO.txt</div>
+        <p class="font-rajdhani text-base text-slate-300 leading-relaxed mb-4">
+          Experienced academic leader with a proven record in <strong class="text-cyan-400">AI, Data Science, and Biomedical Signal Processing</strong>. 
+          Completed a 12-term Executive Programme in Data Science and AI from <strong class="text-amber-400">EICT-IIT Guwahati</strong> (2023–2025).
+        </p>
+        <p class="font-rajdhani text-base text-slate-300 leading-relaxed mb-4">
+          Currently spearheading NAAC accreditation, global rankings (THE, QS), NBA programme accreditation, and ISO 21001-based quality systems 
+          as <strong class="text-purple-400">Dean IQAC</strong> at MRIIRS — where the institute achieved <strong class="text-green-400">NAAC 'A++' grade (Feb 2023)</strong>.
+        </p>
+        <p class="font-rajdhani text-base text-slate-300 leading-relaxed">
+          Authored a book with <strong class="text-amber-400">Elsevier Publishers</strong> on EEG-based Brain-Computer Interfacing (2019), 
+          holds multiple international patents, and has supervised 4 awarded PhD scholars.
+        </p>
+      </div>
+
+      <!-- Expertise Skills -->
+      <div class="card border box-glow-purple p-6 fade-up">
+        <div class="font-mono-tech text-xs text-purple-400 mb-4 opacity-60">// SKILL_TREE.exe</div>
+        <div class="space-y-4">
+          <!-- Skill bars -->
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="font-rajdhani text-sm font-semibold text-slate-300">Artificial Intelligence & ML</span>
+              <span class="font-mono-tech text-xs text-cyan-400">LVL 95</span>
+            </div>
+            <div class="xp-bar"><div class="xp-fill" style="width:95%;"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="font-rajdhani text-sm font-semibold text-slate-300">Biomedical Signal Processing</span>
+              <span class="font-mono-tech text-xs text-cyan-400">LVL 98</span>
+            </div>
+            <div class="xp-bar"><div class="xp-fill" style="width:98%;"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="font-rajdhani text-sm font-semibold text-slate-300">Python / Data Science</span>
+              <span class="font-mono-tech text-xs text-cyan-400">LVL 90</span>
+            </div>
+            <div class="xp-bar"><div class="xp-fill" style="width:90%;"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="font-rajdhani text-sm font-semibold text-slate-300">Academic Quality Assurance</span>
+              <span class="font-mono-tech text-xs text-purple-400">LVL 99</span>
+            </div>
+            <div class="xp-bar">
+              <div class="xp-fill" style="width:99%; background: linear-gradient(90deg, #bf00ff, #00f5ff);"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="font-rajdhani text-sm font-semibold text-slate-300">Internet of Things</span>
+              <span class="font-mono-tech text-xs text-cyan-400">LVL 85</span>
+            </div>
+            <div class="xp-bar"><div class="xp-fill" style="width:85%;"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="font-rajdhani text-sm font-semibold text-slate-300">Research &amp; Publication</span>
+              <span class="font-mono-tech text-xs text-cyan-400">LVL 93</span>
+            </div>
+            <div class="xp-bar"><div class="xp-fill" style="width:93%;"></div></div>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 mt-5">
+          <span class="tag" style="color:var(--neon-cyan);border-color:rgba(0,245,255,0.3);">EEG</span>
+          <span class="tag" style="color:var(--neon-purple);border-color:rgba(191,0,255,0.3);">ECG</span>
+          <span class="tag" style="color:var(--neon-green);border-color:rgba(57,255,20,0.3);">MATLAB</span>
+          <span class="tag" style="color:var(--neon-amber);border-color:rgba(255,179,0,0.3);">Deep Learning</span>
+          <span class="tag" style="color:var(--neon-cyan);border-color:rgba(0,245,255,0.3);">NAAC</span>
+          <span class="tag" style="color:var(--neon-purple);border-color:rgba(191,0,255,0.3);">NBA</span>
+          <span class="tag" style="color:var(--neon-green);border-color:rgba(57,255,20,0.3);">OBE</span>
+          <span class="tag" style="color:var(--neon-amber);border-color:rgba(255,179,0,0.3);">NEP 2020</span>
+          <span class="tag" style="color:var(--neon-cyan);border-color:rgba(0,245,255,0.3);">SDGs</span>
+          <span class="tag" style="color:var(--neon-purple);border-color:rgba(191,0,255,0.3);">ISO 21001</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="mt-8 card border box-glow-amber p-6 fade-up">
+      <div class="font-mono-tech text-xs text-amber-400 mb-5 opacity-60">// EDUCATION.log</div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="border border-amber-500 border-opacity-30 p-4 rounded-sm" style="background:rgba(255,179,0,0.04);">
+          <div class="font-orbitron text-amber-400 text-xs mb-2">2023–2025</div>
+          <div class="font-rajdhani font-bold text-white text-sm mb-1">Executive Programme</div>
+          <div class="font-rajdhani text-slate-400 text-sm">Data Science &amp; AI</div>
+          <div class="font-mono-tech text-xs text-amber-400 mt-2">EICT · IIT Guwahati</div>
+        </div>
+        <div class="border border-cyan-500 border-opacity-30 p-4 rounded-sm" style="background:rgba(0,245,255,0.04);">
+          <div class="font-orbitron text-cyan-400 text-xs mb-2">2016</div>
+          <div class="font-rajdhani font-bold text-white text-sm mb-1">Ph.D – CGPA 9.27</div>
+          <div class="font-rajdhani text-slate-400 text-sm">Biomedical Signal Processing</div>
+          <div class="font-mono-tech text-xs text-cyan-400 mt-2">Manav Rachna International</div>
+        </div>
+        <div class="border border-purple-500 border-opacity-30 p-4 rounded-sm" style="background:rgba(191,0,255,0.04);">
+          <div class="font-orbitron text-purple-400 text-xs mb-2">2010</div>
+          <div class="font-rajdhani font-bold text-white text-sm mb-1">M.Tech – 77%</div>
+          <div class="font-rajdhani text-slate-400 text-sm">Electronics &amp; Communication</div>
+          <div class="font-mono-tech text-xs text-purple-400 mt-2">Punjab Technical University</div>
+        </div>
+        <div class="border border-green-500 border-opacity-30 p-4 rounded-sm" style="background:rgba(57,255,20,0.04);">
+          <div class="font-orbitron text-green-400 text-xs mb-2">2003</div>
+          <div class="font-rajdhani font-bold text-white text-sm mb-1">B.Tech – 74.27%</div>
+          <div class="font-rajdhani text-slate-400 text-sm">Electronics &amp; Communication</div>
+          <div class="font-mono-tech text-xs text-green-400 mt-2">Punjab Technical University</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider z1"></div>
+
+
+<!-- ═══════════════════════════════════════════
+     EXPERIENCE
+════════════════════════════════════════════ -->
+<section id="experience" class="z1">
+  <div class="section-wrapper">
+    <div class="section-title glow-purple mb-10 fade-up">Experience</div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      <!-- Timeline Left -->
+      <div class="space-y-6">
+        <div class="font-mono-tech text-xs text-purple-400 opacity-50 mb-2">// CAREER_LOG</div>
+
+        <div class="timeline-item pb-6 fade-up">
+          <div class="font-mono-tech text-xs text-cyan-400 mb-1">May 2025 – Present</div>
+          <div class="font-rajdhani font-bold text-white text-lg">Dean IQAC &amp; Professor</div>
+          <div class="font-rajdhani text-slate-400 text-sm">Dept. of CSE · MRIIRS, Faridabad</div>
+          <div class="mt-2 flex flex-wrap gap-1">
+            <span class="tag" style="color:var(--neon-green);border-color:rgba(57,255,20,0.25);font-size:0.65rem;">NAAC A++</span>
+            <span class="tag" style="color:var(--neon-amber);border-color:rgba(255,179,0,0.25);font-size:0.65rem;">THE Rankings</span>
+            <span class="tag" style="color:var(--neon-purple);border-color:rgba(191,0,255,0.25);font-size:0.65rem;">QS Rankings</span>
+          </div>
+        </div>
+
+        <div class="timeline-item pb-6 fade-up">
+          <div class="font-mono-tech text-xs text-cyan-400 mb-1">Jul 2021 – Apr 2025</div>
+          <div class="font-rajdhani font-bold text-white text-lg">Director IQAC &amp; Professor</div>
+          <div class="font-rajdhani text-slate-400 text-sm">Dept. of CSE · MRIIRS, Faridabad</div>
+        </div>
+
+        <div class="timeline-item pb-6 fade-up">
+          <div class="font-mono-tech text-xs text-cyan-400 mb-1">Aug 2020 – Jun 2021</div>
+          <div class="font-rajdhani font-bold text-white text-lg">Director IQAC &amp; Assoc. Professor</div>
+          <div class="font-rajdhani text-slate-400 text-sm">MRIIRS, Faridabad</div>
+        </div>
+
+        <div class="timeline-item pb-6 fade-up">
+          <div class="font-mono-tech text-xs text-cyan-400 mb-1">Aug 2017 – Jul 2020</div>
+          <div class="font-rajdhani font-bold text-white text-lg">Associate Professor</div>
+          <div class="font-rajdhani text-slate-400 text-sm">Dept. of CSE · MRIIRS, Faridabad</div>
+        </div>
+
+        <div class="timeline-item pb-6 fade-up">
+          <div class="font-mono-tech text-xs text-cyan-400 mb-1">Aug 2015 – Aug 2017</div>
+          <div class="font-rajdhani font-bold text-white text-lg">Assistant Professor &amp; Programme Coordinator</div>
+          <div class="font-rajdhani text-slate-400 text-sm">ECE &amp; EEE · G.D. Goenka University, Gurgaon</div>
+        </div>
+
+        <div class="timeline-item pb-6 fade-up">
+          <div class="font-mono-tech text-xs text-cyan-400 mb-1">Aug 2013 – Aug 2014</div>
+          <div class="font-rajdhani font-bold text-white text-lg">Assistant Professor</div>
+          <div class="font-rajdhani text-slate-400 text-sm">ECE · Apeejay Stya University, Gurgaon</div>
+        </div>
+
+        <div class="timeline-item pb-6 fade-up">
+          <div class="font-mono-tech text-xs text-cyan-400 mb-1">Aug 2011 – Feb 2012</div>
+          <div class="font-rajdhani font-bold text-white text-lg">R&amp;D Engineer</div>
+          <div class="font-rajdhani text-slate-400 text-sm">National Brain Research Centre, Manesar</div>
+        </div>
+
+        <div class="timeline-item fade-up">
+          <div class="font-mono-tech text-xs text-cyan-400 mb-1">Aug 2003 – Nov 2007</div>
+          <div class="font-rajdhani font-bold text-white text-lg">Lecturer</div>
+          <div class="font-rajdhani text-slate-400 text-sm">ECE · SSCET Badhani, Pathankot, Punjab</div>
+        </div>
+      </div>
+
+      <!-- IQAC Responsibilities -->
+      <div class="card border box-glow-cyan p-6 fade-up">
+        <div class="font-mono-tech text-xs text-cyan-500 mb-4 opacity-60">// RESPONSIBILITIES.exe</div>
+        <div class="font-orbitron text-sm text-cyan-400 mb-4">IQAC Leadership</div>
+        <ul class="space-y-2.5">
+          <li class="flex gap-2.5 items-start">
+            <span class="text-cyan-500 mt-0.5">▸</span>
+            <span class="font-rajdhani text-sm text-slate-300">Secured <strong class="text-green-400">NAAC 'A++' grade</strong> (Feb 2023) — highest accreditation</span>
+          </li>
+          <li class="flex gap-2.5 items-start">
+            <span class="text-cyan-500 mt-0.5">▸</span>
+            <span class="font-rajdhani text-sm text-slate-300">Managed THE Impact, QS World, QS Sustainability, NIRF rankings (Univ Rank: 92)</span>
+          </li>
+          <li class="flex gap-2.5 items-start">
+            <span class="text-cyan-500 mt-0.5">▸</span>
+            <span class="font-rajdhani text-sm text-slate-300">Led <strong class="text-amber-400">NBA accreditation</strong> of all B.Tech programmes (Dec 2022) and MBA (Feb 2022)</span>
+          </li>
+          <li class="flex gap-2.5 items-start">
+            <span class="text-cyan-500 mt-0.5">▸</span>
+            <span class="font-rajdhani text-sm text-slate-300">QS Digital Maturity Framework — MRIIRS placed at <strong class="text-cyan-400">Level 3</strong>; QA processes at <strong class="text-cyan-400">Level 4</strong> (highest)</span>
+          </li>
+          <li class="flex gap-2.5 items-start">
+            <span class="text-cyan-500 mt-0.5">▸</span>
+            <span class="font-rajdhani text-sm text-slate-300">Developed and copyright-granted <strong class="text-purple-400">MRIIRS Quality Process Manual (2024)</strong></span>
+          </li>
+          <li class="flex gap-2.5 items-start">
+            <span class="text-cyan-500 mt-0.5">▸</span>
+            <span class="font-rajdhani text-sm text-slate-300">Implemented ISO 21001 Educational Organization Management System with audits</span>
+          </li>
+          <li class="flex gap-2.5 items-start">
+            <span class="text-cyan-500 mt-0.5">▸</span>
+            <span class="font-rajdhani text-sm text-slate-300">Developed MIS, Outcome Attainment, Mentoring, and Feedback modules on EMS</span>
+          </li>
+          <li class="flex gap-2.5 items-start">
+            <span class="text-cyan-500 mt-0.5">▸</span>
+            <span class="font-rajdhani text-sm text-slate-300">Lead university-wide <strong class="text-green-400">SDG (17 SDGs)</strong> curriculum coordination and sustainability education</span>
+          </li>
+          <li class="flex gap-2.5 items-start">
+            <span class="text-cyan-500 mt-0.5">▸</span>
+            <span class="font-rajdhani text-sm text-slate-300">Working on <strong class="text-amber-400">ABET accreditation</strong> of CSE Programme</span>
+          </li>
+          <li class="flex gap-2.5 items-start">
+            <span class="text-cyan-500 mt-0.5">▸</span>
+            <span class="font-rajdhani text-sm text-slate-300">Publishes annual IQAC newsletter <em class="text-purple-400">QUEST</em> and quarterly SDG Progress Reports</span>
+          </li>
+        </ul>
+
+        <div class="mt-5 pt-4 border-t border-slate-800">
+          <div class="font-orbitron text-xs text-purple-400 mb-3">Teaching Portfolio</div>
+          <div class="flex flex-wrap gap-1.5">
+            <span class="tag" style="color:#94a3b8;border-color:#2d3748;">Python</span>
+            <span class="tag" style="color:#94a3b8;border-color:#2d3748;">Machine Learning</span>
+            <span class="tag" style="color:#94a3b8;border-color:#2d3748;">Data Science</span>
+            <span class="tag" style="color:#94a3b8;border-color:#2d3748;">IoT for AI</span>
+            <span class="tag" style="color:#94a3b8;border-color:#2d3748;">DSP</span>
+            <span class="tag" style="color:#94a3b8;border-color:#2d3748;">VLSI</span>
+            <span class="tag" style="color:#94a3b8;border-color:#2d3748;">R Programming</span>
+            <span class="tag" style="color:#94a3b8;border-color:#2d3748;">Microcontrollers</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider z1"></div>
+
+
+<!-- ═══════════════════════════════════════════
+     RESEARCH
+════════════════════════════════════════════ -->
+<section id="research" class="z1">
+  <div class="section-wrapper">
+    <div class="section-title glow-green mb-10 fade-up">Research</div>
+
+    <!-- PhD Supervisions -->
+    <div class="mb-8 fade-up">
+      <div class="font-mono-tech text-xs text-green-400 opacity-60 mb-4">// PhD_SUPERVISIONS.log</div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="card border box-glow-green p-4">
+          <div class="font-orbitron text-green-400 text-xs mb-2">2021 · AWARDED</div>
+          <div class="font-rajdhani font-bold text-white text-sm mb-1">Anshul Khatter</div>
+          <div class="font-rajdhani text-slate-400 text-xs leading-relaxed">Identification of Cognitive Workload using EEG Signal Processing</div>
+        </div>
+        <div class="card border box-glow-green p-4">
+          <div class="font-orbitron text-green-400 text-xs mb-2">2023 · AWARDED</div>
+          <div class="font-rajdhani font-bold text-white text-sm mb-1">Ashu</div>
+          <div class="font-rajdhani text-slate-400 text-xs leading-relaxed">Optimization of Security in Hybrid Networks using Computational Intelligence</div>
+        </div>
+        <div class="card border box-glow-green p-4">
+          <div class="font-orbitron text-green-400 text-xs mb-2">2023 · AWARDED</div>
+          <div class="font-rajdhani font-bold text-white text-sm mb-1">Neha Chaudhary</div>
+          <div class="font-rajdhani text-slate-400 text-xs leading-relaxed">Enhancement of Spectrum Sensing Techniques in Cognitive Radio</div>
+        </div>
+        <div class="card border box-glow-green p-4">
+          <div class="font-orbitron text-green-400 text-xs mb-2">2025 · AWARDED</div>
+          <div class="font-rajdhani font-bold text-white text-sm mb-1">Radhika R.</div>
+          <div class="font-rajdhani text-slate-400 text-xs leading-relaxed">Enhancement of Cardiac MRI Images and Performance Evaluation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Research Areas + Patents -->
+    <div class="grid lg:grid-cols-2 gap-8">
+
+      <!-- Research Areas -->
+      <div class="card border box-glow-cyan p-6 fade-up">
+        <div class="font-mono-tech text-xs text-cyan-500 mb-4 opacity-60">// RESEARCH_AREAS.json</div>
+        <div class="space-y-3">
+          <div class="flex items-center gap-3 p-3 border border-cyan-500 border-opacity-20 rounded-sm" style="background:rgba(0,245,255,0.04);">
+            <div class="w-2 h-2 rounded-full bg-cyan-400 flex-shrink-0" style="box-shadow:0 0 6px #00f5ff;"></div>
+            <span class="font-rajdhani text-sm text-slate-300">EEG/ECG-based Brain-Computer Interfaces &amp; Affective Computing</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 border border-purple-500 border-opacity-20 rounded-sm" style="background:rgba(191,0,255,0.04);">
+            <div class="w-2 h-2 rounded-full bg-purple-400 flex-shrink-0" style="box-shadow:0 0 6px #bf00ff;"></div>
+            <span class="font-rajdhani text-sm text-slate-300">Machine Learning &amp; Deep Learning for Healthcare &amp; Medical Imaging</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 border border-green-500 border-opacity-20 rounded-sm" style="background:rgba(57,255,20,0.04);">
+            <div class="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" style="box-shadow:0 0 6px #39ff14;"></div>
+            <span class="font-rajdhani text-sm text-slate-300">Cognitive Radio &amp; Spectrum Sensing Techniques</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 border border-amber-500 border-opacity-20 rounded-sm" style="background:rgba(255,179,0,0.04);">
+            <div class="w-2 h-2 rounded-full bg-amber-400 flex-shrink-0" style="box-shadow:0 0 6px #ffb300;"></div>
+            <span class="font-rajdhani text-sm text-slate-300">IoT-MANET Security &amp; DDoS Attack Mitigation in e-Healthcare</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 border border-cyan-500 border-opacity-20 rounded-sm" style="background:rgba(0,245,255,0.04);">
+            <div class="w-2 h-2 rounded-full bg-cyan-400 flex-shrink-0" style="box-shadow:0 0 6px #00f5ff;"></div>
+            <span class="font-rajdhani text-sm text-slate-300">Outcome-Based Education &amp; Learning Analytics</span>
+          </div>
+          <div class="flex items-center gap-3 p-3 border border-purple-500 border-opacity-20 rounded-sm" style="background:rgba(191,0,255,0.04);">
+            <div class="w-2 h-2 rounded-full bg-purple-400 flex-shrink-0" style="box-shadow:0 0 6px #bf00ff;"></div>
+            <span class="font-rajdhani text-sm text-slate-300">Image Compression, Enhancement &amp; Histogram Equalization</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Patents -->
+      <div class="card border box-glow-amber p-6 fade-up">
+        <div class="font-mono-tech text-xs text-amber-400 mb-4 opacity-60">// PATENTS_&_COPYRIGHTS.db</div>
+        <div class="space-y-3">
+          <div class="border-l-2 border-amber-500 pl-3 py-1">
+            <div class="font-mono-tech text-xs text-amber-400">INTERNATIONAL · Vietnam · Published</div>
+            <div class="font-rajdhani text-sm text-slate-300 mt-0.5">Printing System that Reuses Print Media</div>
+          </div>
+          <div class="border-l-2 border-green-500 pl-3 py-1">
+            <div class="font-mono-tech text-xs text-green-400">INTERNATIONAL · Australia · GRANTED</div>
+            <div class="font-rajdhani text-sm text-slate-300 mt-0.5">Reliable &amp; Energy Efficient Data Transfer in Wireless Body Area Networks</div>
+          </div>
+          <div class="border-l-2 border-cyan-500 pl-3 py-1">
+            <div class="font-mono-tech text-xs text-cyan-400">INTERNATIONAL · UK · GRANTED</div>
+            <div class="font-rajdhani text-sm text-slate-300 mt-0.5">AI based Balance and Posture Training Equipment (No. 6366051)</div>
+          </div>
+          <div class="border-l-2 border-purple-500 pl-3 py-1">
+            <div class="font-mono-tech text-xs text-purple-400">NATIONAL · Published (2023)</div>
+            <div class="font-rajdhani text-sm text-slate-300 mt-0.5">Study on Effect of Modern Educational Technology on Quality Education</div>
+          </div>
+          <div class="border-l-2 border-slate-500 pl-3 py-1">
+            <div class="font-mono-tech text-xs text-slate-400">NATIONAL · Various Patents Published</div>
+            <div class="font-rajdhani text-sm text-slate-300 mt-0.5">IoT Blockchain Trial Boost, Locust Detection using ML, Child Emergency SOC Tracker &amp; more</div>
+          </div>
+          <div class="border-l-2 border-amber-500 pl-3 py-1">
+            <div class="font-mono-tech text-xs text-amber-400">COPYRIGHT · L-157656/2024</div>
+            <div class="font-rajdhani text-sm text-slate-300 mt-0.5">Quality Assurance Manual of MRIIRS</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Book & Reviewer -->
+    <div class="grid sm:grid-cols-2 gap-6 mt-6 fade-up">
+      <div class="card border box-glow-purple p-5 flex gap-4">
+        <div class="text-3xl flex-shrink-0">📘</div>
+        <div>
+          <div class="font-orbitron text-xs text-purple-400 mb-1">ELSEVIER PUBLICATION · 2019</div>
+          <div class="font-rajdhani font-bold text-white text-sm mb-1">EEG Based Brain Computer Interfacing</div>
+          <div class="font-rajdhani text-slate-400 text-xs">Cognitive Analysis and Control Applications — First Edition, March 2019</div>
+        </div>
+      </div>
+      <div class="card border box-glow-cyan p-5 flex gap-4">
+        <div class="text-3xl flex-shrink-0">🔬</div>
+        <div>
+          <div class="font-orbitron text-xs text-cyan-400 mb-1">REGISTERED REVIEWER</div>
+          <div class="font-rajdhani font-bold text-white text-sm mb-1">IEEE, Elsevier, Springer Journals</div>
+          <div class="font-rajdhani text-slate-400 text-xs">IEEE Trans. on Biomedical Engg, Computers in Biology &amp; Medicine, IEEE TENCON, INDIACOM, EDUCON Dubai</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider z1"></div>
+
+
+<!-- ═══════════════════════════════════════════
+     PUBLICATIONS (Select)
+════════════════════════════════════════════ -->
+<section id="publications" class="z1">
+  <div class="section-wrapper">
+    <div class="section-title glow-purple mb-4 fade-up">Select Publications</div>
+    <p class="font-rajdhani text-slate-400 text-sm mb-8 fade-up">
+      Scopus H-Index: <span class="text-cyan-400 font-bold">11</span> &nbsp;·&nbsp;
+      Google Scholar H-Index: <span class="text-cyan-400 font-bold">14</span> &nbsp;·&nbsp;
+      Journal of Alzheimer's Disease (IF 4.714, SCI), Sustainability (WoS), Procedia Computer Science (Elsevier), SAGE, Springer &amp; more
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+
+      <!-- Publication cards -->
+      <div class="card border border-slate-700 pub-card p-4 transition-all fade-up">
+        <div class="flex gap-2 mb-2 flex-wrap">
+          <span class="tag" style="color:var(--neon-green);border-color:rgba(57,255,20,0.3);font-size:0.65rem;">Sustainability (WoS) 2025</span>
+          <span class="tag" style="color:#64748b;border-color:#334155;font-size:0.65rem;">Scopus · SCI Expanded</span>
+        </div>
+        <div class="font-rajdhani text-sm text-white font-semibold leading-snug mb-1">Transforming Digital Signal &amp; Image Processing Education: An AI-Driven Approach to Pedagogical Advancements</div>
+        <div class="font-mono-tech text-xs text-slate-500">Bansal D., Mahajan R., et al. · DOI: 10.3390/su172310741</div>
+      </div>
+
+      <div class="card border border-slate-700 pub-card p-4 transition-all fade-up">
+        <div class="flex gap-2 mb-2 flex-wrap">
+          <span class="tag" style="color:var(--neon-purple);border-color:rgba(191,0,255,0.3);font-size:0.65rem;">Procedia CS – Elsevier 2024</span>
+          <span class="tag" style="color:#64748b;border-color:#334155;font-size:0.65rem;">Scopus</span>
+        </div>
+        <div class="font-rajdhani text-sm text-white font-semibold leading-snug mb-1">Cetacean Optimization Based Medical Image Contrast-Enhancement for Cardiac MRI Disease Diagnosis</div>
+        <div class="font-mono-tech text-xs text-slate-500">R. Radhika, Rashima Mahajan · Procedia CS, vol.235, 2024</div>
+      </div>
+
+      <div class="card border border-slate-700 pub-card p-4 transition-all fade-up">
+        <div class="flex gap-2 mb-2 flex-wrap">
+          <span class="tag" style="color:var(--neon-amber);border-color:rgba(255,179,0,0.3);font-size:0.65rem;">SAGE Journals 2021</span>
+          <span class="tag" style="color:#64748b;border-color:#334155;font-size:0.65rem;">Scopus · ESCI (WoS)</span>
+        </div>
+        <div class="font-rajdhani text-sm text-white font-semibold leading-snug mb-1">Designing Performance Metrics and Rubrics to Assess Student Outcome Attainment in Engineering Project Design Course</div>
+        <div class="font-mono-tech text-xs text-slate-500">Rashima Mahajan, Dipali Bansal · Journal of Education, SAGE, 2021</div>
+      </div>
+
+      <div class="card border border-slate-700 pub-card p-4 transition-all fade-up">
+        <div class="flex gap-2 mb-2 flex-wrap">
+          <span class="tag" style="color:var(--neon-cyan);border-color:rgba(0,245,255,0.3);font-size:0.65rem;">J. Alzheimer's Disease 2012</span>
+          <span class="tag" style="color:#64748b;border-color:#334155;font-size:0.65rem;">Scopus · SCI · IF 4.714</span>
+        </div>
+        <div class="font-rajdhani text-sm text-white font-semibold leading-snug mb-1">Structural Brain Atlases: Design, Rationale and Applications in Normal and Pathological Cohorts</div>
+        <div class="font-mono-tech text-xs text-slate-500">P.K. Mandal, R. Mahajan, I.D. Dinov · JAD vol.31, pp.1-20, USA</div>
+      </div>
+
+      <div class="card border border-slate-700 pub-card p-4 transition-all fade-up">
+        <div class="flex gap-2 mb-2 flex-wrap">
+          <span class="tag" style="color:var(--neon-purple);border-color:rgba(191,0,255,0.3);font-size:0.65rem;">Procedia CS – Elsevier 2017</span>
+          <span class="tag" style="color:#64748b;border-color:#334155;font-size:0.65rem;">Scopus</span>
+        </div>
+        <div class="font-rajdhani text-sm text-white font-semibold leading-snug mb-1">Real Time EEG based Cognitive Brain Computer Interface for Control Applications via Arduino Interfacing</div>
+        <div class="font-mono-tech text-xs text-slate-500">Rashima Mahajan, Dipali Bansal · Procedia CS, vol.115, 2017</div>
+      </div>
+
+      <div class="card border border-slate-700 pub-card p-4 transition-all fade-up">
+        <div class="flex gap-2 mb-2 flex-wrap">
+          <span class="tag" style="color:var(--neon-green);border-color:rgba(57,255,20,0.3);font-size:0.65rem;">IEEE EDUCON 2019</span>
+          <span class="tag" style="color:#64748b;border-color:#334155;font-size:0.65rem;">IEEE Xplore</span>
+        </div>
+        <div class="font-rajdhani text-sm text-white font-semibold leading-snug mb-1">A Holistic Approach to Assess Learning Outcome Attainment Levels for Engineering Programs</div>
+        <div class="font-mono-tech text-xs text-slate-500">D. Bansal, R. Mahajan, et al. · IEEE EDUCON Dubai 2019</div>
+      </div>
+
+      <div class="card border border-slate-700 pub-card p-4 transition-all fade-up">
+        <div class="flex gap-2 mb-2 flex-wrap">
+          <span class="tag" style="color:var(--neon-cyan);border-color:rgba(0,245,255,0.3);font-size:0.65rem;">Springer IJIT 2021</span>
+          <span class="tag" style="color:#64748b;border-color:#334155;font-size:0.65rem;">Scopus</span>
+        </div>
+        <div class="font-rajdhani text-sm text-white font-semibold leading-snug mb-1">Identification of Spectrum Holes using Energy Detector Based Spectrum Sensing</div>
+        <div class="font-mono-tech text-xs text-slate-500">N. Chaudhary, R. Mahajan · IJIT, Springer Singapore, 2021</div>
+      </div>
+
+      <div class="card border border-slate-700 pub-card p-4 transition-all fade-up">
+        <div class="flex gap-2 mb-2 flex-wrap">
+          <span class="tag" style="color:var(--neon-amber);border-color:rgba(255,179,0,0.3);font-size:0.65rem;">IJBET 2020</span>
+          <span class="tag" style="color:#64748b;border-color:#334155;font-size:0.65rem;">Scopus · ESCI</span>
+        </div>
+        <div class="font-rajdhani text-sm text-white font-semibold leading-snug mb-1">Automated Emotion State Classification using Higher Order Spectra and Interval Features of EEG</div>
+        <div class="font-mono-tech text-xs text-slate-500">Rashima Mahajan · IJBET vol.34, no.3, 2020</div>
+      </div>
+
+    </div>
+
+    <div class="mt-6 text-center fade-up">
+      <a href="https://scholar.google.com/citations?user=daFcZQEAAAAJ&hl=en" target="_blank"
+         class="inline-block font-orbitron text-xs tracking-wider px-6 py-3 border border-purple-500 text-purple-400 hover:bg-purple-600 hover:text-white transition-all duration-200">
+        VIEW ALL PUBLICATIONS ON GOOGLE SCHOLAR →
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="divider z1"></div>
+
+
+<!-- ═══════════════════════════════════════════
+     ACHIEVEMENTS
+════════════════════════════════════════════ -->
+<section id="achievements" class="z1">
+  <div class="section-wrapper">
+    <div class="section-title glow-amber mb-10 fade-up">Achievements</div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <div class="achievement box-glow-cyan border-cyan-500 border-opacity-40 fade-up" style="background:rgba(0,245,255,0.04);">
+        <div class="text-2xl mb-2">🏆</div>
+        <div class="font-orbitron text-xs text-cyan-400 mb-1">NAAC 2023</div>
+        <div class="font-rajdhani font-bold text-white text-base">NAAC 'A++' Grade</div>
+        <div class="font-rajdhani text-slate-400 text-sm mt-1">Highest accreditation grade achieved for MRIIRS under IQAC leadership — Feb 2023</div>
+      </div>
+
+      <div class="achievement box-glow-green border-green-500 border-opacity-40 fade-up" style="background:rgba(57,255,20,0.04);">
+        <div class="text-2xl mb-2">🥇</div>
+        <div class="font-orbitron text-xs text-green-400 mb-1">NPTEL · SWAYAM</div>
+        <div class="font-rajdhani font-bold text-white text-base">All India Topper</div>
+        <div class="font-rajdhani text-slate-400 text-sm mt-1">Introduction to Internet of Things — All India Topper, July-Dec 2019</div>
+      </div>
+
+      <div class="achievement box-glow-purple border-purple-500 border-opacity-40 fade-up" style="background:rgba(191,0,255,0.04);">
+        <div class="text-2xl mb-2">📖</div>
+        <div class="font-orbitron text-xs text-purple-400 mb-1">ELSEVIER · 2019</div>
+        <div class="font-rajdhani font-bold text-white text-base">Published Book</div>
+        <div class="font-rajdhani text-slate-400 text-sm mt-1">EEG Based Brain Computer Interfacing — Cognitive Analysis &amp; Control Applications</div>
+      </div>
+
+      <div class="achievement box-glow-amber border-amber-500 border-opacity-40 fade-up" style="background:rgba(255,179,0,0.04);">
+        <div class="text-2xl mb-2">🎓</div>
+        <div class="font-orbitron text-xs text-amber-400 mb-1">MRIIRS NIRF</div>
+        <div class="font-rajdhani font-bold text-white text-base">NIRF Ranking</div>
+        <div class="font-rajdhani text-slate-400 text-sm mt-1">University Rank 92 · Engineering Band 101–150 · Overall Band 101–150</div>
+      </div>
+
+      <div class="achievement box-glow-cyan border-cyan-500 border-opacity-40 fade-up" style="background:rgba(0,245,255,0.04);">
+        <div class="text-2xl mb-2">🌐</div>
+        <div class="font-orbitron text-xs text-cyan-400 mb-1">QS DIGITAL MATURITY</div>
+        <div class="font-rajdhani font-bold text-white text-base">QA at Level 4</div>
+        <div class="font-rajdhani text-slate-400 text-sm mt-1">MRIIRS QA processes placed at Level 4 (Highest Level) in QS Digital Maturity Framework</div>
+      </div>
+
+      <div class="achievement box-glow-green border-green-500 border-opacity-40 fade-up" style="background:rgba(57,255,20,0.04);">
+        <div class="text-2xl mb-2">⚙️</div>
+        <div class="font-orbitron text-xs text-green-400 mb-1">PhD CGPA 9.27</div>
+        <div class="font-rajdhani font-bold text-white text-base">Distinction Throughout</div>
+        <div class="font-rajdhani text-slate-400 text-sm mt-1">First Class with Distinction in B.Tech (74.27%) and M.Tech (77%) — Punjab Technical University</div>
+      </div>
+
+      <div class="achievement box-glow-purple border-purple-500 border-opacity-40 fade-up" style="background:rgba(191,0,255,0.04);">
+        <div class="text-2xl mb-2">🔬</div>
+        <div class="font-orbitron text-xs text-purple-400 mb-1">GRANTS</div>
+        <div class="font-rajdhani font-bold text-white text-base">3 International Patents Granted</div>
+        <div class="font-rajdhani text-slate-400 text-sm mt-1">Granted patents in Australia, UK, and Vietnam. Multiple national patents published.</div>
+      </div>
+
+      <div class="achievement box-glow-amber border-amber-500 border-opacity-40 fade-up" style="background:rgba(255,179,0,0.04);">
+        <div class="text-2xl mb-2">💡</div>
+        <div class="font-orbitron text-xs text-amber-400 mb-1">SESSION LEADERSHIP</div>
+        <div class="font-rajdhani font-bold text-white text-base">International Conference Chair</div>
+        <div class="font-rajdhani text-slate-400 text-sm mt-1">Session Chair &amp; Special Session Coordinator at IEEE INDIACOM, ICAICR, SoCTA, EDUCON Dubai</div>
+      </div>
+
+      <div class="achievement box-glow-cyan border-cyan-500 border-opacity-40 fade-up" style="background:rgba(0,245,255,0.04);">
+        <div class="text-2xl mb-2">🤝</div>
+        <div class="font-orbitron text-xs text-cyan-400 mb-1">MEMBERSHIPS</div>
+        <div class="font-rajdhani font-bold text-white text-base">IEEE &amp; IEI Member</div>
+        <div class="font-rajdhani text-slate-400 text-sm mt-1">Active member of IEEE and Institution of Engineers India (IEI)</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider z1"></div>
+
+
+<!-- ═══════════════════════════════════════════
+     COURSES & CERTIFICATIONS
+════════════════════════════════════════════ -->
+<section id="courses" class="z1">
+  <div class="section-wrapper">
+    <div class="section-title glow-cyan mb-10 fade-up">Courses &amp; Certifications</div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- New Courses Developed -->
+      <div class="card border box-glow-cyan p-6 fade-up">
+        <div class="font-mono-tech text-xs text-cyan-500 mb-4 opacity-60">// COURSES_DEVELOPED.list</div>
+        <div class="space-y-2.5">
+          <div class="flex items-start gap-2.5">
+            <span class="text-cyan-400 text-xs mt-0.5">▸</span>
+            <div>
+              <div class="font-rajdhani text-sm font-semibold text-white">AI Powered IoT for CSE (AIML specialization)</div>
+              <div class="font-mono-tech text-xs text-slate-500">B.Tech · MRIIRS Faridabad</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-cyan-400 text-xs mt-0.5">▸</span>
+            <div>
+              <div class="font-rajdhani text-sm font-semibold text-white">Data Science with Python</div>
+              <div class="font-mono-tech text-xs text-slate-500">B.Tech · MRIIRS Faridabad</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-cyan-400 text-xs mt-0.5">▸</span>
+            <div>
+              <div class="font-rajdhani text-sm font-semibold text-white">Python Programming for Engineers</div>
+              <div class="font-mono-tech text-xs text-slate-500">B.Tech · MRIIRS Faridabad</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-cyan-400 text-xs mt-0.5">▸</span>
+            <div>
+              <div class="font-rajdhani text-sm font-semibold text-white">Introduction to SDGs</div>
+              <div class="font-mono-tech text-xs text-slate-500">All programmes · IQAC, MRIIRS</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-cyan-400 text-xs mt-0.5">▸</span>
+            <div>
+              <div class="font-rajdhani text-sm font-semibold text-white">Internet of Things</div>
+              <div class="font-mono-tech text-xs text-slate-500">B.Tech CSE · MRIIRS</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <span class="text-cyan-400 text-xs mt-0.5">▸</span>
+            <div>
+              <div class="font-rajdhani text-sm font-semibold text-white">Advanced Signal Processing</div>
+              <div class="font-mono-tech text-xs text-slate-500">PhD level · GD Goenka University</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MOOCs / Certifications -->
+      <div class="card border box-glow-purple p-6 fade-up">
+        <div class="font-mono-tech text-xs text-purple-400 mb-4 opacity-60">// CERTIFICATIONS.unlock</div>
+
+        <!-- NPTEL -->
+        <div class="mb-4">
+          <div class="font-orbitron text-xs text-amber-400 mb-2">SWAYAM · NPTEL</div>
+          <div class="space-y-1">
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-rajdhani text-slate-300">Introduction to IoT</span>
+              <span class="tag" style="color:var(--neon-green);border-color:rgba(57,255,20,0.3);font-size:0.6rem;">ALL INDIA TOPPER</span>
+            </div>
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-rajdhani text-slate-300">Industry 4.0 &amp; Industrial IoT</span>
+              <span class="font-mono-tech text-slate-500">Certified</span>
+            </div>
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-rajdhani text-slate-300">Python for Data Science</span>
+              <span class="font-mono-tech text-slate-500">Certified</span>
+            </div>
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-rajdhani text-slate-300">Accreditation and OBE</span>
+              <span class="font-mono-tech text-slate-500">Certified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coursera -->
+        <div class="mb-4">
+          <div class="font-orbitron text-xs text-cyan-400 mb-2">COURSERA</div>
+          <div class="space-y-1">
+            <div class="font-rajdhani text-xs text-slate-300">IoT &amp; Embedded Systems — Univ. of California</div>
+            <div class="font-rajdhani text-xs text-slate-300">Arduino Platform &amp; C Programming — Univ. of California</div>
+            <div class="font-rajdhani text-xs text-slate-300">Building Leadership Skills — HEC Paris</div>
+          </div>
+        </div>
+
+        <!-- IIT -->
+        <div>
+          <div class="font-orbitron text-xs text-purple-400 mb-2">EICT · IIT KANPUR</div>
+          <div class="space-y-1">
+            <div class="font-rajdhani text-xs text-slate-300">Programming using Python · ICT Academy</div>
+            <div class="font-rajdhani text-xs text-slate-300">R-Programming · ICT Academy</div>
+            <div class="font-rajdhani text-xs text-slate-300">Scientific Computing with Python — FOSSEE, IIT Bombay</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider z1"></div>
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="z1 relative" style="background:rgba(5,10,19,0.95);border-top:1px solid rgba(0,245,255,0.1);">
+  <div class="max-w-5xl mx-auto px-6 py-12 text-center">
+    <div class="font-orbitron font-black text-2xl glow-cyan mb-2">DR. RASHIMA MAHAJAN</div>
+    <div class="font-rajdhani text-slate-400 text-sm mb-6">Dean IQAC &amp; Professor · CSE · MRIIRS, Faridabad</div>
+    <div class="flex justify-center gap-4 flex-wrap mb-8">
+      <a href="mailto:rashimamahajan@gmail.com"
+         class="font-mono-tech text-xs text-slate-400 hover:text-cyan-400 transition-colors">
+        rashimamahajan@gmail.com
+      </a>
+      <span class="text-slate-700">·</span>
+      <a href="https://scholar.google.com/citations?user=daFcZQEAAAAJ&hl=en" target="_blank"
+         class="font-mono-tech text-xs text-slate-400 hover:text-cyan-400 transition-colors">
+        Google Scholar
+      </a>
+      <span class="text-slate-700">·</span>
+      <a href="https://www.scopus.com/authid/detail.uri?authorId=56155020000" target="_blank"
+         class="font-mono-tech text-xs text-slate-400 hover:text-purple-400 transition-colors">
+        Scopus
+      </a>
+      <span class="text-slate-700">·</span>
+      <a href="https://www.linkedin.com/in/rashima-mahajan-03842036/" target="_blank"
+         class="font-mono-tech text-xs text-slate-400 hover:text-blue-400 transition-colors">
+        LinkedIn
+      </a>
+    </div>
+    <div class="font-mono-tech text-xs text-slate-600">
+      © 2026 Rashima Mahajan · Built with precision &amp; code
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+<script>
+  // ── Hamburger Menu ──
+  const btn = document.getElementById('hamburger-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn.addEventListener('click', () => {
+    btn.classList.toggle('open');
+    menu.classList.toggle('hidden');
+    menu.classList.toggle('flex');
+  });
+
+  function closeMobile() {
+    btn.classList.remove('open');
+    menu.classList.add('hidden');
+    menu.classList.remove('flex');
+  }
+
+  // ── Close mobile menu on outside click ──
+  document.addEventListener('click', (e) => {
+    if (!btn.contains(e.target) && !menu.contains(e.target)) {
+      closeMobile();
+    }
+  });
+
+  // ── Intersection Observer for fade-up ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, (i % 4) * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── Typing effect on hero ──
+  const taglines = [
+    'AI & Machine Learning Expert',
+    'Dean IQAC · MRIIRS Faridabad',
+    'Biomedical Signal Processing',
+    'Academic Quality Leader',
+    'Elsevier Book Author (2019)',
+    'NAAC A++ Architect',
+    'IEEE & IEI Member',
+    'Data Science & AI Specialist',
+  ];
+  let tagIdx = 0, charIdx = 0, deleting = false;
+  const tagEl = document.getElementById('tagline-text');
+
+  const bootText = 'LOADING PROFILE DATA...';
+  let bootChar = 0;
+
+  function bootSequence() {
+    if (bootChar <= bootText.length) {
+      tagEl.textContent = bootText.slice(0, bootChar++);
+      setTimeout(bootSequence, 55);
+    } else {
+      setTimeout(eraseBootText, 700);
+    }
+  }
+
+  function eraseBootText() {
+    if (bootChar > 0) {
+      tagEl.textContent = bootText.slice(0, --bootChar);
+      setTimeout(eraseBootText, 30);
+    } else {
+      setTimeout(typeEffect, 300);
+    }
+  }
+
+  function typeEffect() {
+    if (!tagEl) return;
+    const current = taglines[tagIdx];
+    if (!deleting) {
+      tagEl.textContent = current.slice(0, ++charIdx);
+      if (charIdx === current.length) {
+        deleting = true;
+        setTimeout(typeEffect, 2000);
+        return;
+      }
+      setTimeout(typeEffect, 75);
+    } else {
+      tagEl.textContent = current.slice(0, --charIdx);
+      if (charIdx === 0) {
+        deleting = false;
+        tagIdx = (tagIdx + 1) % taglines.length;
+        setTimeout(typeEffect, 350);
+        return;
+      }
+      setTimeout(typeEffect, 38);
+    }
+  }
+
+  setTimeout(bootSequence, 600);
+
+  // ── Skill bar trigger on scroll ──
+  const xpObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.xp-fill').forEach(bar => {
+          bar.style.animationPlayState = 'running';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.xp-bar').forEach(bar => {
+    bar.querySelector('.xp-fill').style.animationPlayState = 'paused';
+    xpObserver.observe(bar.closest('.card'));
+  });
+</script>
+</body>
+</html>
